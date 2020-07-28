@@ -16,9 +16,9 @@ io.on('connection', (socket) => {
     socket.on("domain",function(msg){
       //  var domain = msg.domain;
      //   console.log(domain)
-        var domain = ['http://nk.googlle.vip','https://namkhoa.phongkhamdakhoahongphong.vn/sub-wp/'];
+        var domain = ['https://namkhoa.phongkhamdakhoahongphong.vn/sub-wp/'];
         console.log(domain.length)
-        for(var i = 0;i<2;i++){
+        for(var i = 0;i<1;i++){
             var domain1 = domain[i].toString();
             request(domain1, function (error, response, body) {
                 //   console.error('error:', error); // Print the error if one occurred
