@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
 
 
     });
-
+    res.render("index",{code:status})
 });
 //
 // io.on('connection', (socket) => {
