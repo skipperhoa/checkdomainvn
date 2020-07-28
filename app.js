@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
     socket.on("domain",function(msg){
         var domain = msg.domain;
         console.log(domain.length)
-        https.get('https://namkhoa.phongkhamdakhoahongphong.vn/sub-wp/', (res) => {
+        https.get('http://namkhoa.phongkhamdakhoahongphong.vn/sub-wp/', (res) => {
             console.log('statusCode:', res.statusCode);
             console.log('headers:', res.headers);
             socket.emit("statusDomain",res)
