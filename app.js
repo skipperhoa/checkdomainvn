@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
 
         if (!error && response.statusCode == 200) {
             status = 200;
-            res.render("index",{code:status})
+            res.render("index",{code:status+"ok"})
         }
-        res.render("index",{code:status})
+        res.render("index",{code:status+"error"})
 
     });
 
