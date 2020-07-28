@@ -2,22 +2,16 @@ const express = require('express');
 const http = require('http');
 var request = require('request');
 var rp = require('request-promise');
-const httpPort = 8000;
 var app = express()
 app.set('view engine', 'ejs');
 app.set("views", "./views");
 app.use(express.static('public'))
 /**set server */
-var httpServer = http.createServer(app);
-var io = require('socket.io')(httpServer);
-app.get("/",function(req,ress){
-    ress.render("index");
+app.set('port', process.env.PORT || 8000);
+app.get('/', function(req, res) {
+   res.render("index")
+});
 
-});
-io.on('connection', (socket) => {
-    socket.on("domain",function(msg){
-    })
-});
-httpServer.listen(process.env.PORT || httpPort, () => {
-    console.log("Http server listing on port : " + httpPort)
+app.listen(8000, function () {
+    console.log('***** exp listening on port: ' + process.env.PORT);
 });
