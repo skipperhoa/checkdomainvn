@@ -32,13 +32,15 @@ io.on('connection', (socket) => {
                         "domain": domain1,
                         "status": '0K'
                     }
+                    socket.emit("statusDomian",statusDomian)
                 } else {
                     statusDomian = {
                         "domain": domain1,
                         "status": 'Error'
                     }
+                    socket.emit("statusDomian",statusDomian)
                 }
-                console.log(statusDomian)
+
             });
 
 
