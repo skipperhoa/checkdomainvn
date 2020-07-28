@@ -9,26 +9,12 @@ app.set("views", "./views");
 app.use(express.static('public'))
 /**set server */
 const https = require('https');
-
-
 var httpServer = https.createServer(app);
 var io = require('socket.io')(httpServer);
-app.get("/",function(req,res){
-    https.get('http://namkhoa.phongkhamdakhoahongphong.vn/sub-wp/', (res) => {
-        console.log('statusCode:', res.statusCode);
-        console.log('headers:', res.headers);
-        res.on('data', (d) => {
-            console.log(d);
+app.get("/",function(req,ress){
+    ress.render("index");
 
-        });
-
-    }).on('error', (e) => {
-        console.error(e);
-
-    });
-   res.render("index",{code:res.statusCode});
 });
-
 io.on('connection', (socket) => {
     socket.on("domain",function(msg){
     })
