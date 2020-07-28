@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
                          "domain":domain[i],
                          "status":'0K'
                      }
-                  
+
                      status.push(statusDomian)
                  } else {
                      var statusDomian = {
@@ -38,8 +38,10 @@ io.on('connection', (socket) => {
 
                      status.push(statusDomian)
                  }
+                 socket.emit("statusDomain",{domain:statusDomian});
 
             });
+
         }
         console.log(status);
     })
