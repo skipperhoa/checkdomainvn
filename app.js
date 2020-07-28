@@ -2,8 +2,10 @@ const express = require('express');
 const http = require('http');
 var request = require('request');
 var rp = require('request-promise');
+var sslRedirect = require('heroku-ssl-redirect');
 const httpPort = 8000;
 var app = express()
+app.use(sslRedirect());
 app.set('view engine', 'ejs');
 app.set("views", "./views");
 app.use(express.static('public'))
