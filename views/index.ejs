@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title>Socket.IO chat</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body{
+            width:900px;
+            margin:0px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h2>Trạng thái Domain</h2>
+    <ul>
+        <li><span>https://namkhoa.phongkhamdakhoahongphong.vn</span>----------|---------<b class="idhongphong">Ok</b></li>
+    </ul>
+</div>
+
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+      var socket = io.connect();
+      var domain = ['https//phongkhamdakhoahongphong.vn','http://nk.googlle.vip'];
+      socket.emit("domain",{domain:domain});
+      socket.on("statusDomain",function(msg){
+
+      });
+</script>
+</html>
