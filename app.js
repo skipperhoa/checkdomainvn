@@ -11,7 +11,7 @@ const http = require('http').createServer(app);
 
 app.get('/', (req, res) => {
     var status = 0;
-    request("http://nk.googlle.vip", function (error, response, body) {
+    request("https://namkhoa.phongkhamdakhoahongphong.vn", function (error, response, body) {
         //   console.error('error:', error); // Print the error if one occurred
         // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         // console.log('body:', body); // Print the HTML for the Google homepage.
