@@ -14,36 +14,29 @@ app.get("/",function(req,res){
 });
 io.on('connection', (socket) => {
     socket.on("domain",function(msg){
-        var domain = msg.domain;
-        console.log(domain)
-        var status = [];
-
-        for(var i = 0;i<domain.length;i++){
-            request(domain[i], function (error, response, body) {
-             //   console.error('error:', error); // Print the error if one occurred
+      //  var domain = msg.domain;
+     //   console.log(domain)
+        var domain = ['http://nk.googlle.vip','https://namkhoa.phongkhamdakhoahongphong.vn/sub-wp/'];
+        console.log(domain.length)
+        for(var i = 0;i<2;i++){
+            var domain1 = domain[i].toString();
+            request(domain1, function (error, response, body) {
+                //   console.error('error:', error); // Print the error if one occurred
                 console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-              // console.log('body:', body); // Print the HTML for the Google homepage.
-                 if (!error && response.statusCode == 200) {
-                     var statusDomian = {
-                         "domain":domain[i],
-                         "status":'0K'
-                     }
-
-                     status.push(statusDomian)
-                 } else {
-                     var statusDomian = {
-                         "domain":domain[i],
-                         "status":'Error'
-                     }
-
-                     status.push(statusDomian)
-                 }
-                 socket.emit("statusDomain",{domain:statusDomian});
+                // console.log('body:', body); // Print the HTML for the Google homepage.
+                if (!error && response.statusCode == 200) {
+                    var statusDomian = {
+                        "domain": domain1,
+                        "status": '0K'
+                    }
+                    socket.emit("statusDomain",{domain:statusDomian});
+                    //  status.push(statusDomian)
+                }
+                //  socket.emit("statusDomain",{domain:statusDomian});
 
             });
-
         }
-        console.log(status);
+
     })
 });
 httpServer.listen(process.env.PORT || httpPort, () => {
