@@ -13,48 +13,27 @@ var io = require('socket.io')(httpServer);
 app.get("/",function(req,res){
    res.render("index");
 });
+const https = require('https');
+
+
 io.on('connection', (socket) => {
     socket.on("domain",function(msg){
         var domain = msg.domain;
         console.log(domain.length)
-        for(var i = 0;i<domain.length;i++){
-            var domain1 = domain[i].toString();
+        https.get('https://namkhoa.phongkhamdakhoahongphong.vn/sub-wp/', (res) => {
+            console.log('statusCode:', res.statusCode);
+            console.log('headers:', res.headers);
+            socket.emit("statusDomain",res)
+            res.on('data', (d) => {
+                console.log(d);
+                socket.emit("statusDomain",d)
+            });
 
-           /* request(domain1, function (error, response, body) {
-                //   console.error('error:', error); // Print the error if one occurred
-               // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                // console.log('body:', body); // Print the HTML for the Google homepage.
+        }).on('error', (e) => {
+            console.error(e);
+            socket.emit("statusDomain",e)
+        });
 
-                if (!error && response.statusCode == 200) {
-                    var statusDomian1 = {
-                        "domain": domain1,
-                        "status": '0K'
-                    }
-                    socket.emit("statusDomain",statusDomian1)
-                } else {
-                    var statusDomian2 = {
-                        "domain": domain1,
-                        "status": 'Error'
-                    }
-                    socket.emit("statusDomain",statusDomian2)
-                }
-
-            });*/
-            rp("http://namkhoa.phongkhamdakhoahongphong.vn/sub-wp/")
-                .then(function (html) {
-                    var statusDomian2 = {
-                        "domain": domain1,
-                        "status": 'Error'
-                    }
-                    socket.emit("statusDomain",statusDomian2)
-                })
-                .catch(function (err) {
-                    console.error(err)
-                });
-
-
-
-        }
 
     })
 });
